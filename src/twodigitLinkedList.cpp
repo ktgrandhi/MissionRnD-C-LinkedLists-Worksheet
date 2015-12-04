@@ -15,6 +15,7 @@ NOTES: Only Postive Numbers
 #include <stdio.h>
 #include <malloc.h>
 
+
 struct node {
 	int digit1;
 	int digit2;
@@ -22,5 +23,19 @@ struct node {
 };
 
 int convert_sll_2digit_to_int(struct node *head){
-	return 0;
+	int countOfTen = 1, number = 0,reverse=0;
+	struct node* traverse=head;
+	while (traverse != NULL)
+	{
+		number = number + (traverse->digit2 * 10 + traverse->digit1)*countOfTen;
+		countOfTen *= 100;
+		traverse = traverse->next;
+	}
+	while (number>0)
+	{
+		reverse = reverse * 10 + number % 10;
+		number /= 10;
+
+	}
+	return reverse;
 }
